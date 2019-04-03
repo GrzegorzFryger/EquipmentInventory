@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EquipmentInventory.Context;
+using EquipmentInventory.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace EquipmentInventory.Controllers
 {
@@ -10,11 +14,22 @@ namespace EquipmentInventory.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly InventoryEquipmentContext _context;
+
+        public ValuesController(InventoryEquipmentContext context)
+        {
+            _context = context;
+        }
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<User> Get()
         {
-            return new string[] { "value1", "value2" };
+            
+           
+            return _context.Users.Include(u => u.Localization)
+                .ThenInclude(r => r.Users)
+                .Single();
         }
 
         // GET api/values/5
