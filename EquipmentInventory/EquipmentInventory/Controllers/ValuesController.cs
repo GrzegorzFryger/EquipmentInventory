@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using EquipmentInventory.Context;
 using EquipmentInventory.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -15,21 +16,21 @@ namespace EquipmentInventory.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly InventoryEquipmentContext _context;
+        private readonly IMapper _mapper;
 
-        public ValuesController(InventoryEquipmentContext context)
+        public ValuesController(InventoryEquipmentContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET api/values
         [HttpGet]
-        public ActionResult<User> Get()
+        public ActionResult<string> Get()
         {
-            
-           
-            return _context.Users.Include(u => u.Localization)
-                .ThenInclude(r => r.Users)
-                .Single();
+
+
+            return "it is work"; 
         }
 
         // GET api/values/5

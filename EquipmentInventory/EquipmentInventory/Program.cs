@@ -18,28 +18,7 @@ namespace EquipmentInventory
         public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
-
-            using (var scope = host.Services.CreateScope())
-            {
-                try
-                {
-                    var context = scope.ServiceProvider.GetService<InventoryEquipmentContext>();
-                    context.Database.EnsureCreated();
-                
-                    context.Database.Migrate();
-                }
-                catch (Exception e)
-                {
-                    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(e, "An error  the database.");
-                }
-                
-                
-                
-                
-            }
-            
-            host.Run();
+                host.Run();
                 
         }
 
