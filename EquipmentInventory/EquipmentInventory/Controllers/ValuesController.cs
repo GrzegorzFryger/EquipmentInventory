@@ -28,8 +28,6 @@ namespace EquipmentInventory.Controllers
         [HttpGet]
         public ActionResult<string> Get()
         {
-
-
             return "it is work"; 
         }
 
