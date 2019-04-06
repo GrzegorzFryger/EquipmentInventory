@@ -7,6 +7,7 @@ using AutoMapper.QueryableExtensions;
 using EquipmentInventory.Context;
 using EquipmentInventory.Entities;
 using EquipmentInventory.Models;
+using EquipmentInventory.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -18,24 +19,26 @@ namespace EquipmentInventory.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly InventoryEquipmentContext _context;
+        private IGenericRepository<User, InventoryEquipmentContext> ad;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
 
         public ValuesController(InventoryEquipmentContext context, IMapper mapper, ILogger<ValuesController> logger)
         {
-            _context = context;
+            
+             ad = new GenericRepository<User,InventoryEquipmentContext>(context);
+           
             _mapper = mapper;
             _logger = logger;
         }
 
         // GET api/values
         [HttpGet]
-        public ActionResult<UserDTO> Get()
+        public Task<User> Get()
         {
             _logger.LogInformation($"fetching data ");
-            
-            return _context.Users.Where(x => x.Id == 2).ProjectTo<UserDTO>(_mapper.ConfigurationProvider).Single();
+
+            return ad.FindByIdAsync(2); 
         }
 
         // GET api/values/5

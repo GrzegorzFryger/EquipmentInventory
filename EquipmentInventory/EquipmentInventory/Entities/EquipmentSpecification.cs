@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EquipmentInventory.Entities
 {
-    public class EquipmentSpecification
+    public class EquipmentSpecification : IBasicEntity
     {
         [Key]
         public int Id { get; set; }

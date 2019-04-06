@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace EquipmentInventory.Entities
 {
     [Serializable]
-    public class Warehouse
+    public class Warehouse : IBasicEntity
     {
         [Key]
         public int Id { get; set; }

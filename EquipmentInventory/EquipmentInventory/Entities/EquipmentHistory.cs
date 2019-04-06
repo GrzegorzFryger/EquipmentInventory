@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EquipmentInventory.Entities
 {
-    public class EquipmentHistory
+    public class EquipmentHistory : IBasicEntity
     {
         [Key]
         public int Id { get;  set; }

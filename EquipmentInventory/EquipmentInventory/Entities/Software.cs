@@ -5,7 +5,7 @@ using EquipmentInventory.Context;
 
 namespace EquipmentInventory.Entities
 {
-    public class Software
+    public class Software : IBasicEntity
     {
         [Key]
         public int Id { get; set; }

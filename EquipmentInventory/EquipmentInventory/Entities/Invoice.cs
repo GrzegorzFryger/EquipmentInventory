@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EquipmentInventory.Entities
 {
-    public class Invoice 
+    public class Invoice : IBasicEntity
     {
         [Key]
         public int Id { get; set; }

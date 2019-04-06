@@ -1,6 +1,6 @@
 namespace EquipmentInventory.Entities
 {
-    public class EquipmentSoftware
+    public class EquipmentSoftware 
     {
        public int EquipmentId { get; set; }
        public Equipment Equipment { get; set; }

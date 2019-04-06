@@ -2,7 +2,7 @@ using System;
 
 namespace EquipmentInventory.Entities
 {
-    public class UserRole
+    public class UserRole 
     {
        
         public int RoleId { get; set; }

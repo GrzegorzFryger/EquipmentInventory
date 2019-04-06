@@ -11,7 +11,7 @@ namespace EquipmentInventory.Entities
        
     }
     
-    public class Role
+    public class Role : IBasicEntity
     {
           [Key]
          public int Id { get; set; }

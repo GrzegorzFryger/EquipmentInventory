@@ -11,6 +11,7 @@ using EquipmentInventory.Configurations;
 using EquipmentInventory.Context;
 using EquipmentInventory.Entities;
 using EquipmentInventory.Models;
+using EquipmentInventory.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -62,7 +63,8 @@ namespace EquipmentInventory
             
             builder.AddMapperProfiles().Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>()
                 .InstancePerLifetimeScope();
-                
+            
+         
             
             Container = builder.Build();
             return new AutofacServiceProvider(Container);
