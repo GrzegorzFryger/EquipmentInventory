@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using EquipmentInventory.Context;
 using EquipmentInventory.Entities;
-using EquipmentInventory.Models;
 using EquipmentInventory.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using static EquipmentInventory.Repository.SpecificationBuilder;
 
 namespace EquipmentInventory.Controllers
 {
@@ -25,8 +21,12 @@ namespace EquipmentInventory.Controllers
 
         public ValuesController(InventoryEquipmentContext context, IMapper mapper, ILogger<ValuesController> logger)
         {
+
+           
             
              ad = new GenericRepository<User,InventoryEquipmentContext>(context);
+             
+            
            
             _mapper = mapper;
             _logger = logger;
@@ -34,11 +34,14 @@ namespace EquipmentInventory.Controllers
 
         // GET api/values
         [HttpGet]
-        public Task<User> Get()
+        public string Get()
         {
             _logger.LogInformation($"fetching data ");
 
-            return ad.FindByIdAsync(2); 
+
+            return "it is work";
+
+
         }
 
         // GET api/values/5

@@ -1,7 +1,7 @@
 using AutoMapper;
 using EquipmentInventory.Entities;
 
-namespace EquipmentInventory.Models
+namespace EquipmentInventory.Models.MappingProfiles
 {
     public class UserDtosProfile : Profile
     {
