@@ -15,9 +15,7 @@ namespace EquipmentInventory.Repository
         
         Task Delete(int id);
         Task Delete(TEntity entity);
-        Task<IReadOnlyCollection<TEntity>> Find(Specification<TEntity> specification);
-
-
+        Task<IEnumerable<TEntity>> Find(Specification<TEntity> specification);
 
     }
 

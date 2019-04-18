@@ -21,11 +21,14 @@ namespace EquipmentInventory.Repository
         where TEntity : class, IBasicEntity where T : DbContext
     {
         private readonly T _context;
+        private readonly SpecificationQueryableBuilder<TEntity> _queryableBuilder;
 
+        
 
-        public GenericRepository(T context)
+        public GenericRepository(T context, SpecificationQueryableBuilder<TEntity> queryableBuilder )
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            _queryableBuilder = queryableBuilder ?? throw new ArgumentNullException(nameof(queryableBuilder));
         }
 
         public virtual async Task<TEntity> FindByIdAsync(int id)
@@ -82,13 +85,12 @@ namespace EquipmentInventory.Repository
             await this.SaveChangesAsync(entity);
         }
 
-
-        public async Task<IReadOnlyCollection<TEntity>> Find(Specification<TEntity> specification)
+        public async Task<IEnumerable<TEntity>> Find(Specification<TEntity> specification)
         {
-            
-            return await SpecificationExecutor<TEntity>
-                .GenerateQuery(_context.Set<TEntity>().AsQueryable(), specification).ToArrayAsync();
-
+       
+              return await _queryableBuilder
+                .GenerateQuery(_context.Set<TEntity>().AsQueryable(), specification)
+                .ToListAsync();
         }
 
         public async Task Delete(int id)

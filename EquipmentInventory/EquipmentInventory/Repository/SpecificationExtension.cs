@@ -5,7 +5,7 @@ using Remotion.Linq.Clauses;
 
 namespace EquipmentInventory.Repository
 {
-    public static class SpecificationBuilder
+    public static class SpecificationExtension
     {
 
         public static Expression<Func<T, bool>> Or<T>( Expression<Func<T, bool>> left,  Expression<Func<T, bool>> right)
