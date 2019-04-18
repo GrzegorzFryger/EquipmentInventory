@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Reflection.Metadata;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
 using EquipmentInventory.Context;
 using EquipmentInventory.Entities;
 using EquipmentInventory.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using static EquipmentInventory.Repository.SpecificationBuilder;
 
 namespace EquipmentInventory.Controllers
 {
@@ -16,31 +13,25 @@ namespace EquipmentInventory.Controllers
     public class ValuesController : ControllerBase
     {
         private IGenericRepository<User, InventoryEquipmentContext> ad;
+        private InventoryEquipmentContext _context;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
 
         public ValuesController(InventoryEquipmentContext context, IMapper mapper, ILogger<ValuesController> logger)
         {
 
-           
-            
-             ad = new GenericRepository<User,InventoryEquipmentContext>(context);
-             
-            
-           
+             _context = context;
             _mapper = mapper;
             _logger = logger;
         }
 
         // GET api/values
         [HttpGet]
-        public string Get()
+        public async Task<string> Get()
         {
             _logger.LogInformation($"fetching data ");
 
-
-            return "it is work";
-
+            return "it's work ";
 
         }
 
