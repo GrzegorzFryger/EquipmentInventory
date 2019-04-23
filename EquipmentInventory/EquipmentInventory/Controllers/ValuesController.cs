@@ -12,22 +12,20 @@ namespace EquipmentInventory.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private IGenericRepository<User, InventoryEquipmentContext> ad;
-        private InventoryEquipmentContext _context;
-        private readonly IMapper _mapper;
+
+        private readonly EquipmentRepository _repository;
         private readonly ILogger _logger;
 
-        public ValuesController(InventoryEquipmentContext context, IMapper mapper, ILogger<ValuesController> logger)
+        public ValuesController(EquipmentRepository repository, ILogger<ValuesController> logger)
         {
-
-             _context = context;
-            _mapper = mapper;
+            _repository = repository;
             _logger = logger;
         }
 
+
         // GET api/values
         [HttpGet]
-        public async Task<string> Get()
+        public string Get()
         {
             _logger.LogInformation($"fetching data ");
 

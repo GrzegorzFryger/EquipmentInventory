@@ -63,9 +63,15 @@ namespace EquipmentInventory
             
             builder.AddMapperProfiles().Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>()
                 .InstancePerLifetimeScope();
-            
-         
-            
+
+
+            builder.RegisterType<SpecificationQueryableBuilder<Equipment>>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterAssemblyTypes(typeof(Program).Assembly)
+                .Where(t => t.Name.EndsWith("Repository"))
+                .InstancePerLifetimeScope();
+                        
             Container = builder.Build();
             return new AutofacServiceProvider(Container);
 

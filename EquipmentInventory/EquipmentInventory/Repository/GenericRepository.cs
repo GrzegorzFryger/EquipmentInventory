@@ -17,15 +17,14 @@ using Remotion.Linq.Clauses;
 
 namespace EquipmentInventory.Repository
 {
-    public class GenericRepository<TEntity, T> : IGenericRepository<TEntity, T>
+    public abstract class GenericRepository<TEntity, T> : IGenericRepository<TEntity, T>
         where TEntity : class, IBasicEntity where T : DbContext
     {
         private readonly T _context;
         private readonly SpecificationQueryableBuilder<TEntity> _queryableBuilder;
 
         
-
-        public GenericRepository(T context, SpecificationQueryableBuilder<TEntity> queryableBuilder )
+        protected GenericRepository(T context, SpecificationQueryableBuilder<TEntity> queryableBuilder )
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _queryableBuilder = queryableBuilder ?? throw new ArgumentNullException(nameof(queryableBuilder));
@@ -117,6 +116,11 @@ namespace EquipmentInventory.Repository
             await _context.SaveChangesAsync();
         }
 
+
+        protected IQueryable<TEntity> GetContextQueryable()
+        {
+            return _context.Set<TEntity>().AsQueryable().AsNoTracking();
+        }
 
         
     }
