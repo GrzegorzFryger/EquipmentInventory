@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EquipmentInventory.Entities;
+using EquipmentInventory.Repository.Specification;
 using Microsoft.EntityFrameworkCore;
 
 namespace EquipmentInventory.Repository

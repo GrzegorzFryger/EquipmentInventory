@@ -9,6 +9,7 @@ using Autofac.Features.Scanning;
 using AutoMapper;
 using EquipmentInventory.Context;
 using EquipmentInventory.Entities;
+using EquipmentInventory.Repository.Specification;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Query.Expressions;

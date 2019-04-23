@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection.Metadata.Ecma335;
+using EquipmentInventory.Repository.Specification;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace EquipmentInventory.Repository

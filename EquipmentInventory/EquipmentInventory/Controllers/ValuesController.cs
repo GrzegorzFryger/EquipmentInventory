@@ -29,6 +29,9 @@ namespace EquipmentInventory.Controllers
         {
             _logger.LogInformation($"fetching data ");
 
+            
+         
+
             return "it's work ";
 
         }

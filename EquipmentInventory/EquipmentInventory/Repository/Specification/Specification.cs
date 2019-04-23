@@ -1,15 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection.Metadata;
-using System.Xml.Linq;
-using EquipmentInventory.Entities;
-using Microsoft.AspNetCore.Mvc;
-using Remotion.Linq.Clauses;
 
-namespace EquipmentInventory.Repository
+namespace EquipmentInventory.Repository.Specification
 {
     public class Specification <TEntity>
     {
@@ -70,8 +63,11 @@ namespace EquipmentInventory.Repository
         }
         public void AddPaging(int pageSize, int page )
         {
+            if (!(pageSize == 0 && page == 0))
+            {
+                PageActive = true; 
+            }   
             
-            PageActive = true; 
             PageSkip = pageSize * page;
             PageTake = pageSize;
 
