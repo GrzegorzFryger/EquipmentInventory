@@ -10,6 +10,7 @@ namespace EquipmentInventory.Entities
         public int Id { get; set; }
         public string SerialNumber { get; set; }
         public string Description { get; set; }
+        public bool Available { get; set; }
         public Company Company { get; set; }
         public Model Model { get; set; }
 
