@@ -45,6 +45,7 @@ namespace EquipmentInventory.Repository
                 
             }
 
+
             return userQuery;
 
         } 

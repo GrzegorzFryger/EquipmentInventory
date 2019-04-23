@@ -68,15 +68,13 @@ namespace EquipmentInventory.Repository
            
 
         }
-        public  void AddPaging(int pageSize, int page )
+        public void AddPaging(int pageSize, int page )
         {
-            
             
             PageActive = true; 
             PageSkip = pageSize * page;
             PageTake = pageSize;
 
-        
         }
 
 

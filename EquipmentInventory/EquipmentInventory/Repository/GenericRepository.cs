@@ -89,7 +89,9 @@ namespace EquipmentInventory.Repository
         {
        
               return await _queryableBuilder
-                .GenerateQuery(_context.Set<TEntity>().AsQueryable(), specification)
+                .GenerateQuery(
+                    _context.Set<TEntity>().AsQueryable().AsNoTracking(), 
+                    specification)
                 .ToListAsync();
         }
 
