@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using AutoMapper;
-using EquipmentInventory.Context;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using EquipmentInventory.Entities;
-using EquipmentInventory.Repository;
+using EquipmentInventory.Models;
+using EquipmentInventory.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -13,26 +13,26 @@ namespace EquipmentInventory.Controllers
     public class ValuesController : ControllerBase
     {
 
-        private readonly EquipmentRepository _repository;
+        private readonly EquipmentService _equipmentService;
         private readonly ILogger _logger;
 
-        public ValuesController(EquipmentRepository repository, ILogger<ValuesController> logger)
+        public ValuesController( ILogger<ValuesController> logger, EquipmentService equipmentService)
         {
-            _repository = repository;
             _logger = logger;
+            _equipmentService = equipmentService;
         }
 
 
         // GET api/values
         [HttpGet]
-        public string Get()
+        public Task<IEnumerable<EquipmentDto>> Get()
         {
             _logger.LogInformation($"fetching data ");
 
-            
-         
 
-            return "it's work ";
+
+
+            return _equipmentService.GetListEquipmentByType(TypeEquipment.Notebook);
 
         }
 

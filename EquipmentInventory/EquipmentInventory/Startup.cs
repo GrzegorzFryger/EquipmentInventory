@@ -60,9 +60,9 @@ namespace EquipmentInventory
             
             builder.Populate(services);
 
-            
+             /*AUTO-MAPPER BUILD*/
             builder.AddMapperProfiles().Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>()
-                .InstancePerLifetimeScope();
+                .SingleInstance();
 
 
             builder.RegisterType<SpecificationQueryableBuilder<Equipment>>()
@@ -70,6 +70,10 @@ namespace EquipmentInventory
 
             builder.RegisterAssemblyTypes(typeof(Program).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
+                .InstancePerLifetimeScope();
+            
+            builder.RegisterAssemblyTypes(typeof(Program).Assembly)
+                .Where(t => t.Name.EndsWith("Service"))
                 .InstancePerLifetimeScope();
                         
             Container = builder.Build();
