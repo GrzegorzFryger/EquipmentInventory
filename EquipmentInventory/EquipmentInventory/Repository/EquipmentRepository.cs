@@ -37,7 +37,7 @@ namespace EquipmentInventory.Repository
                 .Include(u => u.CurrentUser)
                 .Include(u => u.Invoice)
                 .Include(u => u.History)
-                
+                .AsNoTracking()
                 .ToListAsync();
         }
         
