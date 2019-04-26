@@ -1,43 +1,35 @@
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 
 namespace EquipmentInventory.Services
 {
     public static class MapperAsyncProvider
     {
-        public static  Task<T> ProjectToAsync<TSource, T>(this IMapper mapper, Task<TSource> task)
+        public static async Task<T> ProjectToAsync<TSource, T>(this IMapper mapper, Task<TSource> task)
         {
-
-            var tcs2 = new TaskCompletionSource<T>();
-
-            if (task.Status == TaskStatus.Faulted)
+            //TODO add handling ArgumentException 
+            if (task.Exception != null)
             {
-                throw new ArgumentException("Error ");
+               
+                throw new ArgumentException("Data from repository is not available " );
             }
             
-            var projectionTask = Task.Run(() =>
-            {
-                var mapperResult = mapper.Map<T>(task.Result);
-                if (mapperResult != null)
-                {
-                    
-                    tcs2.TrySetResult(mapperResult);
-                }
-                else
-                {
-                    
-                    tcs2.SetCanceled();
-                }
-                
-                
-            });
+            var tcs2 = new TaskCompletionSource<T>();
 
-            return  tcs2.Task;
+            await task.ContinueWith(t => {  tcs2.TrySetResult(mapper.Map<T>(t.Result)); });
 
+            return await tcs2.Task;
 
         }
+        
+        
+       
     }
 }

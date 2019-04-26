@@ -120,7 +120,7 @@ namespace EquipmentInventory.Repository
 
         protected IQueryable<TEntity> GetContextQueryable()
         {
-            return _context.Set<TEntity>().AsQueryable().AsNoTracking();
+            return _context.Set<TEntity>().AsQueryable();
         }
 
         

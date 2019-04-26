@@ -14,6 +14,7 @@ namespace EquipmentInventory.Entities
         
         
         /*Relations*/
+        public int EquipmentId { get; set; }
         public Equipment Equipment { get; set; }
         
         

@@ -53,7 +53,11 @@ namespace EquipmentInventory
             
            
             services.AddDbContext<InventoryEquipmentContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            {
+               
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
+                
+            });
             
             /*CREATE INSTANCE AUTOFAC BUILDER */
             var builder = new ContainerBuilder();

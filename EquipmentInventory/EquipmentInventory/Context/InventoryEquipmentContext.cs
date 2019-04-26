@@ -25,12 +25,19 @@ namespace EquipmentInventory.Context
             
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
 
             modelBuilder.Entity<Equipment>()
                 .HasOne(e => e.Company)
-                .WithMany(c => c.Equipments);
+                .WithMany(c => c.Equipments)
+                .HasForeignKey(e => e.CompanyForeignKey);
             
             modelBuilder.Entity<Equipment>()
                 .HasOne(e => e.Model)
@@ -51,11 +58,11 @@ namespace EquipmentInventory.Context
             modelBuilder.Entity<Equipment>()
                 .HasOne(e => e.Invoice)
                 .WithMany(i => i.Equipments);
-            
-            modelBuilder.Entity<Equipment>()
-                .HasOne(e => e.History)
-                .WithOne(h => h.Equipment)
-                .HasForeignKey<EquipmentHistory>(h=> h.LocalizationId);
+
+            modelBuilder.Entity<EquipmentHistory>()
+                .HasOne(h => h.Equipment)
+                .WithMany(e => e.History)
+                .HasForeignKey(h => h.EquipmentId);
 
             modelBuilder.Entity<UserRole>()
                 .HasKey(ur => new {ur.RoleId, ur.UserId});
@@ -100,6 +107,8 @@ namespace EquipmentInventory.Context
             
             base.OnModelCreating(modelBuilder);
         }
+        
+        
 
       
     }

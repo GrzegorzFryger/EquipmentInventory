@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 using EquipmentInventory.Context;
 using EquipmentInventory.Entities;
+using EquipmentInventory.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EquipmentInventory.Repository
@@ -27,15 +29,15 @@ namespace EquipmentInventory.Repository
         {
 
 
-
             return await GetContextQueryable().Where(e => e.TypeEquioment == typeEquipment)
-                .Include(u => u.Model)
                 .Include(u => u.Company)
+                .Include(u => u.Model)
+                .Include(u => u.Specification)
                 .Include(u => u.CurrentLocalization)
                 .Include(u => u.CurrentUser)
                 .Include(u => u.Invoice)
-                .Include(u => u.TypeEquioment)
                 .Include(u => u.History)
+                
                 .ToListAsync();
         }
         

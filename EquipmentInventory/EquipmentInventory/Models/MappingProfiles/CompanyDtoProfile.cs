@@ -3,11 +3,11 @@ using EquipmentInventory.Entities;
 
 namespace EquipmentInventory.Models.MappingProfiles
 {
-    public class UserDtosProfile : Profile
+    public class CompanyDtoProfile : Profile
     {
-        public UserDtosProfile()
+        public CompanyDtoProfile()
         {
-            CreateMap<User, UserDto>();
+            CreateMap<Company, CompanyDto>(); 
         }
     }
 }

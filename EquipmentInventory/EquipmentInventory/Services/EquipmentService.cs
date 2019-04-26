@@ -49,11 +49,5 @@ namespace EquipmentInventory.Services
         }
         
         
-        public  IEnumerable<EquipmentDto> GetListEquipmentByType2(TypeEquipment typeEquipment)
-        {
-
-            return _mapper.Map<IEnumerable<EquipmentDto>>(_equipmentRepository
-                .GetEagerListEquipmentByType(typeEquipment).Result);
-        }
     }
 }

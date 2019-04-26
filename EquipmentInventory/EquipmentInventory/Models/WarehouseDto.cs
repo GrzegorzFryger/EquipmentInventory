@@ -1,0 +1,12 @@
+namespace EquipmentInventory.Models
+{
+    public class WarehouseDto
+    {
+        public int Id { get; set; }
+        public string Mpk { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string Name { get; set; }
+
+    }
+}

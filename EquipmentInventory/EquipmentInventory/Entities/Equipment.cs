@@ -11,6 +11,7 @@ namespace EquipmentInventory.Entities
         public string SerialNumber { get; set; }
         public string Description { get; set; }
         public bool Available { get; set; }
+        public int CompanyForeignKey { get; set; }
         public Company Company { get; set; }
         public Model Model { get; set; }
 
@@ -19,9 +20,10 @@ namespace EquipmentInventory.Entities
         public EquipmentSpecification Specification { get; set; }
         public TypeEquipment TypeEquioment { get; set; }
         public Invoice Invoice { get; set; }
-        public EquipmentHistory History { get; set; }
         
-        public ICollection <EquipmentSoftware> EquipmentSoftwares { get; set;} 
+        public List<EquipmentHistory> History { get; set; }
+        
+        public ICollection <EquipmentSoftware>  EquipmentSoftwares { get; set;} 
 
 
 
