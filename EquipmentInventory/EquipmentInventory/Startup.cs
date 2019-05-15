@@ -46,10 +46,19 @@ namespace EquipmentInventory
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
+            services.AddCors(o => o.AddPolicy("developPolicy", b =>
+            {
+                b.AllowAnyOrigin() 
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+            }));
+            
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
+            
             
            
             services.AddDbContext<InventoryEquipmentContext>(options =>
@@ -116,6 +125,7 @@ namespace EquipmentInventory
 
 //            app.UseHttpsRedirection();
 
+            app.UseCors("developPolicy");
 
             app.UseMvc();
             applicationLifetime.ApplicationStopped.Register(() => Container.Dispose());

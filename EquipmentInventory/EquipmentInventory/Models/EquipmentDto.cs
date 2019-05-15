@@ -8,6 +8,7 @@ namespace EquipmentInventory.Models
         public int Id { get; set; }
         public string SerialNumber { get; set; }
         public string Description { get; set; }
+        public bool Available { get; set; }
         public CompanyDto Company { get; set; }
         public ModelDto Model { get; set; }
         public WarehouseDto CurrentLocalization { get; set; }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using EquipmentInventory.Entities;
 using EquipmentInventory.Models;
 using EquipmentInventory.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -25,18 +26,9 @@ namespace EquipmentInventory.Controllers
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
         
-        [HttpGet]
-        public Task<IEnumerable<EquipmentDto>> GetListEquipmentByType2()
-        {
-            _logger.LogInformation($"fetching data retriwe data :  " );
-            _logger.LogInformation($"fetching data form Equipment Controller : GetListEquipmentByType ");
-
-            return _equipmentService.GetListEquipmentByType(TypeEquipment.Notebook);
-
-        }
-
+       
         // GET: api/<controller>
-        [HttpGet("{type}")]
+         [HttpGet("{type}")]
         public Task<IEnumerable<EquipmentDto>> GetListEquipmentByType(TypeEquipment type)
         {
             _logger.LogInformation($"fetching data retrieve data :  " + type);
@@ -44,7 +36,7 @@ namespace EquipmentInventory.Controllers
             
             
 
-            return _equipmentService.GetListEquipmentByType(TypeEquipment.Notebook);
+            return _equipmentService.GetListEquipmentByType(type);
 
         }
         
